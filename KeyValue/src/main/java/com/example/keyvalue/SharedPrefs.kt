@@ -28,9 +28,13 @@ open class SharedPrefs {
         return DatabaseManager.buildDatabase(application.applicationContext)
     }
 
-    fun getParam(key: String): String {
+    inline fun <reified T: Any>  getParam(key: String): T? {
         val dataStore =  getDb(application).dataStoreDto().getParam(key)
-        return dataStore.value
+        return if (dataStore.value is T) {
+            dataStore.value
+        } else {
+            null
+        }
     }
 
     private fun setParam(key: String, value: String, dataType: DataType) {

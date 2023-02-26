@@ -20,7 +20,7 @@ class MyApplication: Application() {
             key, "value1"
         )
 
-        val value = sharedPrefs.getParam(key)
+        val value = sharedPrefs.getParam<String>(key)
         System.out.println("key is $key and value is $value")
     }
 
